@@ -17,11 +17,6 @@ public class MyWebSocketHandler implements WebSocketHandler {
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         if (sessionRef.get() == null)
             sessionRef.set(session);
-    }
-
-    @Override
-    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
-        System.out.println(message.getPayload());
         session.sendMessage(new TextMessage("""
                 {
                       "command": [
@@ -30,6 +25,11 @@ public class MyWebSocketHandler implements WebSocketHandler {
                       ]
                     }
                 """));
+    }
+
+    @Override
+    public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
+        System.out.println(message.getPayload());
     }
 
     @Override
