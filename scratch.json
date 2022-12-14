@@ -1,0 +1,29 @@
+{
+  "hint": "Messages must be valid JSON, and plain strings aren't allowed as top-level JSON elements, so everything must be wrapped in a message object. Blame Doug Crockford, not me!",
+  "validCommands": [
+    {
+      "command": "Look"
+    },
+    {
+      "command": "DropBomb"
+    },
+    {
+      "command": [
+        "SetName",
+        "<name>"
+      ]
+    },
+    {
+      "command": "MoveNorth"
+    },
+    {
+      "command": "MoveSouth"
+    },
+    {
+      "command": "MoveEast"
+    },
+    {
+      "command": "MoveWest"
+    }
+  ]
+}
