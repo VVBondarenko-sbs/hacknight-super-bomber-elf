@@ -3,6 +3,7 @@ package com.hacknight.superbomberelf;
 import com.hacknight.superbomberelf.client.MyWebSocketHandler;
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.TextMessage;
@@ -61,6 +62,10 @@ public class Controller {
     return "look";
   }
 
+  @Scheduled(fixedDelay=5000)
+  public void scheduledLook() throws IOException {
+    look();
+  }
 
   public WebSocketSession session() {
     return handler.getSession();
