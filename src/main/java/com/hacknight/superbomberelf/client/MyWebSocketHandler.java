@@ -3,17 +3,25 @@ package com.hacknight.superbomberelf.client;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.*;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 @Component
 public class MyWebSocketHandler implements WebSocketHandler {
+    private AtomicReference<WebSocketSession> sessionRef = new AtomicReference<>();
+
+    public WebSocketSession getSession() {
+        return sessionRef.get();
+    }
+
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-
+        if (sessionRef.get() == null)
+            sessionRef.set(session);
     }
 
     @Override
     public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
         System.out.println(message.getPayload());
-
         session.sendMessage(new TextMessage("""
                 {
                       "command": [
